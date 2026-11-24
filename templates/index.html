@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="kn">
+<head>
+    <meta charset="UTF-8">
+    <title>ಲಕ್ಷ್ಮಿ ಯಂತ್ರ / ಲೂ ಶು ಗ್ರಿಡ್ ಕ್ಯಾಲ್ಕುಲೇಟರ್</title>
+    <style>
+        body { font-family: Arial, sans-serif; background: #f4f6f9; color: #333; margin: 0; padding: 20px; }
+        .container { max-width: 800px; margin: auto; background: #fff; padding: 30px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
+        h2 { color: #b91c1c; text-align: center; }
+        form { text-align: center; margin-bottom: 30px; }
+        input[type="text"] { padding: 10px; width: 250px; font-size: 16px; border: 1px solid #ccc; border-radius: 6px; }
+        button { padding: 10px 20px; font-size: 16px; background: #b91c1c; color: white; border: none; border-radius: 6px; cursor: pointer; }
+        button:hover { background: #991b1b; }
+        .grid-table { width: 60%; margin: 20px auto; border-collapse: collapse; text-align: center; font-size: 28px; font-weight: bold; }
+        .grid-table td { border: 2px solid #333; width: 33.33%; height: 80px; background: #fffbeb; color: #1e3a8a; }
+        .remedies { background: #eff6ff; padding: 20px; border-radius: 8px; margin-top: 20px; }
+        .remedies h3 { color: #1e40af; margin-top: 0; }
+        ul { padding-left: 20px; }
+        li { margin-bottom: 8px; }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h2>ಲಕ್ಷ್ಮಿ ಯಂತ್ರ / ಲೂ ಶು ಗ್ರಿಡ್ ಕ್ಯಾಲ್ಕುಲೇಟರ್</h2>
+    <form method="POST" action="/">
+        <input type="text" name="dob" placeholder="ಜನ್ಮ ದಿನಾಂಕ (ಉದಾ: 13-02-1974)" value="{{ dob }}" required>
+        <button type="submit">ಲೆಕ್ಕಹಾಕಿ (Calculate)</button>
+    </form>
+
+    {% if dob %}
+    <table class="grid-table">
+        {% for row in lo_shu %}
+        <tr>
+            {% for num in row %}
+            <td>{{ formatted_grid[num] }}</td>
+            {% endfor %}
+        </tr>
+        {% endfor %}
+    </table>
+
+    <div class="remedies">
+        <h3>ಮನೆಯಲ್ಲಿ ಇಲ್ಲದ ಸಂಖ್ಯೆಗಳು ಮತ್ತು ಪರಿಹಾರಗಳು (Missing Numbers & Remedies):</h3>
+        {% if missing_numbers %}
+            <ul>
+            {% for num in missing_numbers %}
+                <li><strong>ಸಂಖ್ಯೆ {{ num }}:</strong> {{ remedies[num] }}</li>
+            {% endfor %}
+            </ul>
+        {% else %}
+            <p>ಅದ್ಭುತ! ನಿಮ್ಮ ಜನ್ಮ ದಿನಾಂಕದಲ್ಲಿ ಎಲ್ಲಾ ಸಂಖ್ಯೆಗಳೂ ಇವೆ (ಯಾವ ಸಂಖ್ಯೆಯೂ ಮಿಸ್ ಆಗಿಲ್ಲ).</p>
+        {% endif %}
+    </div>
+    {% endif %}
+</div>
+</body>
+</html>
