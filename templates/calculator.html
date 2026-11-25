@@ -1,22 +1,112 @@
 ﻿<!DOCTYPE html>
-<html lang="kn">
+<html lang="{{ lang if lang else 'kn' }}">
 <head>
     <meta charset="UTF-8">
-    <title>Lucky Star Astro -Munniratnam K R -9513129695</title>
+    <title>Lucky Star Astro - Munniratnam K.R - 9513129695</title>
     <style>
         body { font-family: Arial, sans-serif; background: #f4f6f9; color: #333; margin: 0; }
-        .top-banner { background: #1e3a8a; color: #ffffff; text-align: center; padding: 16px; font-size: 21px; font-weight: bold; }
-        .sub-bar { background: #e0e7ff; color: #1e3a8a; text-align: right; padding: 8px 30px; font-weight: bold; font-size: 15px; }
-        .container { max-width: 850px; margin: 25px auto; background: #fff; padding: 30px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
+        .top-banner {
+            background: #ffffff;
+            color: #1e3a8a;
+            text-align: center;
+            padding: 18px 24px;
+            border-bottom: 3px solid #1e3a8a;
+        }
+        .brand-logo-wrap {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 14px;
+            flex-wrap: wrap;
+        }
+        .brand-badge {
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            background: #1e3a8a;
+            color: #ffffff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            font-weight: bold;
+            border: 2px solid #dc2626;
+            flex-shrink: 0;
+        }
+        .brand-text-block {
+            text-align: center;
+        }
+        .brand-kn-title {
+            font-size: 24px;
+            font-weight: bold;
+            color: #1d4ed8;
+            line-height: 1.25;
+        }
+        .brand-en-title {
+            font-size: 24px;
+            font-weight: bold;
+            color: #dc2626;
+            letter-spacing: 0.5px;
+            line-height: 1.25;
+            margin-top: 2px;
+        }
+        .brand-author {
+            font-size: 16px;
+            font-weight: bold;
+            color: #1e3a8a;
+            margin-top: 4px;
+        }
+        .brand-subtitle {
+            font-size: 13px;
+            font-weight: bold;
+            color: #334155;
+            margin-top: 2px;
+            line-height: 1.4;
+        }
+        .sub-bar { background: #e0e7ff; color: #1e3a8a; padding: 10px 30px; font-weight: bold; font-size: 15px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; }
+        .lang-switch { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
+        .lang-btn { text-decoration: none; padding: 5px 11px; border-radius: 5px; font-size: 13px; background: #ffffff; color: #1e3a8a; border: 1px solid #93c5fd; font-weight: bold; }
+        .lang-btn.active { background: #1e3a8a; color: #ffffff; border-color: #1e3a8a; }
+        .container { max-width: 880px; margin: 25px auto; background: #fff; padding: 30px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
         .form-box { background: #f8fafc; border: 1px solid #cbd5e1; padding: 20px; border-radius: 8px; margin-bottom: 25px; text-align: center; }
         .input-group { margin-bottom: 12px; }
-        input[type="text"] { padding: 10px; width: 300px; font-size: 16px; border: 1px solid #94a3b8; border-radius: 6px; }
+        input[type="text"], select { padding: 10px; width: 300px; max-width: 100%; font-size: 15px; border: 1px solid #94a3b8; border-radius: 6px; background: #fff; }
+        .astro-row { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin-bottom: 12px; }
+        .astro-field { display: flex; flex-direction: column; align-items: flex-start; min-width: 210px; }
+        .astro-field label { font-size: 13px; font-weight: bold; color: #334155; margin-bottom: 4px; }
+        .astro-field select, .astro-field input { width: 215px; padding: 8px; font-size: 14px; }
+        .planet-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(185px, 1fr)); gap: 10px; text-align: left; margin-top: 10px; }
+        .planet-item label { display: block; font-size: 13px; font-weight: bold; color: #1e3a8a; margin-bottom: 3px; }
+        .planet-item select { width: 100%; padding: 7px; font-size: 13px; }
         button { padding: 12px 28px; font-size: 16px; background: #16a34a; color: white; border: none; border-radius: 6px; cursor: pointer; font-weight: bold; }
         button:hover { background: #15803d; }
+        .toggle-partner-btn {
+            background: #fff7ed;
+            color: #b45309;
+            border: 1.5px dashed #f59e0b;
+            padding: 9px 18px;
+            font-size: 14px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: bold;
+            margin: 6px 0;
+        }
+        .toggle-partner-btn:hover { background: #ffedd5; }
+        #partner-section {
+            display: none;
+            background: #fffbeb;
+            border: 1px solid #fde68a;
+            border-radius: 8px;
+            padding: 15px;
+            margin-top: 10px;
+        }
         .card { background: #ffffff; border: 1px solid #e2e8f0; border-radius: 8px; padding: 20px; margin-bottom: 20px; box-shadow: 0 2px 5px rgba(0,0,0,0.05); }
         .card h3 { color: #1d4ed8; margin-top: 0; border-bottom: 2px solid #eff6ff; padding-bottom: 8px; }
-        .grid-table { width: 50%; margin: 15px auto; border-collapse: collapse; text-align: center; font-size: 24px; font-weight: bold; }
-        .grid-table td { border: 2px solid #333; width: 33.33%; height: 70px; background: #fffbeb; color: #b91c1c; }
+        .grids-wrap { display: flex; gap: 20px; flex-wrap: wrap; justify-content: center; }
+        .grid-box { flex: 1 1 320px; text-align: center; }
+        .grid-table { width: 85%; margin: 12px auto; border-collapse: collapse; text-align: center; font-size: 22px; font-weight: bold; }
+        .grid-table td { border: 2px solid #333; width: 33.33%; height: 66px; background: #fffbeb; color: #b91c1c; }
+        .loshu-table td { background: #eff6ff; color: #1e3a8a; }
         .compat-box { border: 2px dashed #3b82f6; border-radius: 8px; padding: 15px; margin-bottom: 15px; background: #f8fafc; }
         .friend { color: #16a34a; font-weight: bold; }
         .enemy { color: #dc2626; font-weight: bold; }
@@ -29,83 +119,217 @@
         .print-btn { background: #dc2626; width: 100%; padding: 16px; font-size: 19px; margin-top: 15px; color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: bold; box-shadow: 0 4px 10px rgba(220, 38, 38, 0.3); }
         .print-btn:hover { background: #b91c1c; }
         @media print {
-            .form-box, .print-btn, .sub-bar { display: none; }
-            body { background: #fff; }
-            .container { box-shadow: none; margin: 0; padding: 0; width: 100%; max-width: 100%; }
+            .form-box, .print-btn, .lang-switch, .sub-bar { display: none; }
+            body { background: #fff; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+            .top-banner { padding: 12px 16px; border-bottom: 2px solid #1e3a8a; }
+            .brand-kn-title, .brand-en-title { font-size: 24px; font-weight: bold; }
+            .container { box-shadow: none; margin: 0 auto; padding: 10px 0; width: 100%; max-width: 100%; }
             .card { break-inside: avoid; border: 1px solid #ccc; box-shadow: none; }
         }
     </style>
 </head>
 <body>
-    <div class="top-banner">Lucky Star Astro -Munniratnam K R -9513129695</div>
-    <div class="sub-bar">ಸ್ವಾಗತ (Welcome): {{ user_name }}</div>
+    <div class="top-banner">
+        <div class="brand-logo-wrap">
+            <div class="brand-badge">★</div>
+            <div class="brand-text-block">
+                <div class="brand-kn-title">ಲಕ್ಕಿ ಸ್ಟಾರ್ ಆಸ್ಟ್ರೋ</div>
+                <div class="brand-en-title">LUCKY STAR ASTRO</div>
+                <div class="brand-author">Munniratnam K.R</div>
+                <div class="brand-subtitle">
+                    Professional Numerologist, KP Astrologer &amp; Vastu<br>
+                    Motivational Coach &amp; Trainer | Mob: 9513129695
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="sub-bar">
+        <div>{{ ui.welcome }}: {{ user_name }}</div>
+        <div class="lang-switch">
+            <span>{{ ui.lang_label }}:</span>
+            <a class="lang-btn {{ 'active' if lang == 'kn' else '' }}" href="?lang=kn">ಕನ್ನಡ</a>
+            <a class="lang-btn {{ 'active' if lang == 'en' else '' }}" href="?lang=en">English</a>
+            <a class="lang-btn {{ 'active' if lang == 'ta' else '' }}" href="?lang=ta">தமிழ்</a>
+            <a class="lang-btn {{ 'active' if lang == 'te' else '' }}" href="?lang=te">తెలుగు</a>
+            <a class="lang-btn {{ 'active' if lang == 'hi' else '' }}" href="?lang=hi">हिन्दी</a>
+        </div>
+    </div>
     
     <div class="container">
         <div class="form-box">
-            <h3 style="color: #1e3a8a; margin-top: 0;">ಸಂಪೂರ್ಣ ಸಂಖ್ಯಾಶಾಸ್ತ್ರ ಹಾಗೂ ವೇದಿಕ್ ಗ್ರಿಡ್ ಪೋರ್ಟಲ್</h3>
-            <form method="POST">
-                <h4 style="color: #15803d; margin-bottom: 8px;">ವ್ಯಕ್ತಿ 1 (Person 1) ವಿವರಗಳು:</h4>
+            <h3 style="color: #1e3a8a; margin-top: 0;">{{ ui.portal_title }}</h3>
+            <form method="POST" action="{{ url_for('calculator', lang=lang) }}">
+                <h4 style="color: #15803d; margin-bottom: 8px;">{{ ui.p1_heading }}</h4>
                 <div class="input-group">
-                    <input type="text" name="dob" placeholder="ಜನ್ಮ ದಿನಾಂಕ (DD-MM-YYYY)" value="{{ dob }}" required>
+                    <input type="text" name="dob" placeholder="{{ ui.dob_ph }}" value="{{ dob }}" required>
                 </div>
                 <div class="input-group">
-                    <input type="text" name="analysed_name" placeholder="ಪೂರ್ಣ ಹೆಸರು (Full Name)" value="{{ analysed_name }}" required>
+                    <input type="text" name="analysed_name" placeholder="{{ ui.name_ph }}" value="{{ analysed_name }}" required>
                 </div>
                 <div class="input-group">
-                    <input type="text" name="input_mobile" placeholder="ಮೊಬೈಲ್ ಸಂಖ್ಯೆ (ಉದಾ: 9513129695)" value="{{ input_mobile }}">
+                    <input type="text" name="input_mobile" placeholder="{{ ui.mobile_ph }}" value="{{ input_mobile }}">
+                </div>
+                <div class="astro-row">
+                    <div class="astro-field">
+                        <input type="text" name="p1_time" placeholder="{{ ui.time_ph }}" value="{{ p1_time }}">
+                    </div>
+                    <div class="astro-field">
+                        <input type="text" name="p1_place" placeholder="{{ ui.place_ph }}" value="{{ p1_place }}">
+                    </div>
+                </div>
+                <div class="astro-row">
+                    <div class="astro-field">
+                        <label>{{ ui.lagna_lbl }}</label>
+                        <select name="p1_lagna">
+                            {% for val, lbl in rashi_options %}
+                            <option value="{{ val }}" {{ 'selected' if p1_lagna == val else '' }}>{{ lbl }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="astro-field">
+                        <label>{{ ui.rashi_lbl }}</label>
+                        <select name="p1_rashi">
+                            {% for val, lbl in rashi_options %}
+                            <option value="{{ val }}" {{ 'selected' if p1_rashi == val else '' }}>{{ lbl }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="astro-field">
+                        <label>{{ ui.nak_lbl }}</label>
+                        <select name="p1_nak">
+                            {% for val, lbl in nak_options %}
+                            <option value="{{ val }}" {{ 'selected' if p1_nak == val else '' }}>{{ lbl }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="astro-field">
+                        <label>{{ ui.transit_nak_lbl }}</label>
+                        <select name="transit_nak">
+                            {% for val, lbl in nak_options %}
+                            <option value="{{ val }}" {{ 'selected' if transit_nak == val else '' }}>{{ lbl }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
                 </div>
 
                 <hr style="border: 0; border-top: 1px dashed #cbd5e1; margin: 15px 0;">
-                <h4 style="color: #b45309; margin-bottom: 8px;">ಪಾಲುದಾರರ / ಸಂಗಾತಿಯ (Partner / Spouse) ವಿವರಗಳು:</h4>
-                <div class="input-group">
-                    <input type="text" name="p2_name" placeholder="ಪಾಲುದಾರರ ಹೆಸರು (Partner Name)" value="{{ p2_name }}">
-                </div>
-                <div class="input-group">
-                    <input type="text" name="p2_dob" placeholder="ಪಾಲುದಾರರ ಜನ್ಮ ದಿನಾಂಕ (DD-MM-YYYY)" value="{{ p2_dob }}">
+                <button type="button" id="toggle-partner-btn" class="toggle-partner-btn" onclick="togglePartnerSection()">
+                    + {{ ui.p2_heading }}
+                </button>
+
+                <div id="partner-section">
+                    <h4 style="color: #b45309; margin-top: 0; margin-bottom: 8px;">{{ ui.p2_heading }}</h4>
+                    <div class="input-group">
+                        <input type="text" id="p2_name" name="p2_name" placeholder="{{ ui.p2_name_ph }}" value="{{ p2_name }}">
+                    </div>
+                    <div class="input-group">
+                        <input type="text" id="p2_dob" name="p2_dob" placeholder="{{ ui.p2_dob_ph }}" value="{{ p2_dob }}">
+                    </div>
+                    <div class="astro-row">
+                        <div class="astro-field">
+                            <label>{{ ui.lagna_lbl }}</label>
+                            <select name="p2_lagna">
+                                {% for val, lbl in rashi_options %}
+                                <option value="{{ val }}" {{ 'selected' if p2_lagna == val else '' }}>{{ lbl }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div class="astro-field">
+                            <label>{{ ui.rashi_lbl }}</label>
+                            <select name="p2_rashi">
+                                {% for val, lbl in rashi_options %}
+                                <option value="{{ val }}" {{ 'selected' if p2_rashi == val else '' }}>{{ lbl }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div class="astro-field">
+                            <label>{{ ui.nak_lbl }}</label>
+                            <select name="p2_nak">
+                                {% for val, lbl in nak_options %}
+                                <option value="{{ val }}" {{ 'selected' if p2_nak == val else '' }}>{{ lbl }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                    </div>
                 </div>
 
-                <button type="submit" style="margin-top: 10px;">ಸಂಪೂರ್ಣ ವಿಶ್ಲೇಷಣೆ (Calculate Yogas & Reports)</button>
+                <hr style="border: 0; border-top: 1px dashed #cbd5e1; margin: 15px 0;">
+                <h4 style="color: #1e3a8a; margin-bottom: 8px;">{{ ui.ashtaka_heading }}</h4>
+                <div class="planet-grid">
+                    {% for pl, sign in planet_positions.items() %}
+                    <div class="planet-item">
+                        <label>{{ pl }}</label>
+                        <select name="pos_{{ pl }}">
+                            {% for val, lbl in rashi_options %}
+                            <option value="{{ val }}" {{ 'selected' if sign == val else '' }}>{{ lbl }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    {% endfor %}
+                </div>
+
+                <button type="submit" style="margin-top: 16px;">{{ ui.calc_btn }}</button>
             </form>
         </div>
 
         {% if dob and analysed_name %}
         
-        <!-- Birth & Name Strength Dashboard based on User Chart Rules -->
         <div class="card" style="background: #f0fdf4; border-color: #86efac;">
-            <h3 style="color: #166534;">🌟 ಜನ್ಮ ಬಲ ಮತ್ತು ಹೆಸರಿನ ಫ್ರೀಕ್ವೆನ್ಸಿ ಬಲ (Birth & Name Strength Analysis)</h3>
+            <h3 style="color: #166534;">{{ ui.strength_title }}</h3>
             
-            <p style="font-size: 17px; margin-bottom: 6px;">📅 <strong>ಜನ್ಮ ಬಲದ ಸರಾಸರಿ ಡಿಗ್ರಿ (Birth Strength):</strong> <span style="color: #15803d; font-size: 20px; font-weight: bold;">{{ birth_strength_avg }}°</span></p>
-            <p style="font-size: 16px; margin-top: 0; color: #14532d;">🎯 <strong>ಜೀವನ ಶೈಲಿ (Lifestyle):</strong> {{ birth_lifestyle }}</p>
+            <p style="font-size: 17px; margin-bottom: 6px;">{{ ui.birth_deg_lbl }} <span style="color: #15803d; font-size: 20px; font-weight: bold;">{{ birth_strength_avg }}°</span></p>
+            <p style="font-size: 16px; margin-top: 0; color: #14532d;">{{ ui.lifestyle_lbl }} {{ birth_lifestyle }}</p>
 
             <hr style="border: 0; border-top: 1px dashed #86efac; margin: 15px 0;">
 
-            <p style="font-size: 17px; margin-bottom: 6px;">🔤 <strong>ಹೆಸರಿನ ಸೌಂಡ್ ಫ್ರೀಕ್ವೆನ್ಸಿ (Name Sound Frequency):</strong> <span style="color: #1d4ed8; font-size: 20px; font-weight: bold;">{{ name_sound_freq }}°</span></p>
-            <p style="font-size: 16px; margin-top: 0; color: #1e40af;">🎯 <strong>ಜೀವನ ಶೈಲಿ (Lifestyle):</strong> {{ name_lifestyle }}</p>
+            <p style="font-size: 17px; margin-bottom: 6px;">{{ ui.name_freq_lbl }} <span style="color: #1d4ed8; font-size: 20px; font-weight: bold;">{{ name_sound_freq }}°</span></p>
+            <p style="font-size: 16px; margin-top: 0; color: #1e40af;">{{ ui.lifestyle_lbl }} {{ name_lifestyle }}</p>
         </div>
 
-        <!-- 1. DOB & Vedic Grid -->
         <div class="card">
-            <h3>1. ಜನ್ಮ ದಿನಾಂಕ ಮತ್ತು ವೇದಿಕ್ ಗ್ರಿಡ್ (DOB & Vedic Grid)</h3>
+            <h3>{{ ui.grid_title }}</h3>
             <p style="text-align: center; font-size: 17px;">
-                <strong>ಜನ್ಮ ದಿನಾಂಕ:</strong> {{ dob }} <br><br>
-                <strong>ಮೂಲ ಸಂಖ್ಯೆ (Birth No):</strong> {{ birth_no }} &nbsp;|&nbsp; 
-                <strong>ಭಾಗ್ಯ ಸಂಖ್ಯೆ (Destiny No):</strong> {{ destiny_total }} (Root: {{ destiny_no }}) &nbsp;|&nbsp; 
-                <strong>ವರ್ಷದ ಸಂಖ್ಯೆ (Year Root):</strong> {{ year_total }} (Root: {{ year_no }})
+                <strong>{{ ui.dob_lbl }}</strong> {{ dob }}
+                {% if p1_time %} &nbsp;|&nbsp; {{ p1_time }}{% endif %}
+                {% if p1_place %} &nbsp;|&nbsp; {{ p1_place }}{% endif %}
+                <br><br>
+                <strong>{{ ui.birth_no_lbl }}</strong> {{ birth_no }} &nbsp;|&nbsp; 
+                <strong>{{ ui.destiny_no_lbl }}</strong> {{ destiny_total }} (Root: {{ destiny_no }}) &nbsp;|&nbsp; 
+                <strong>{{ ui.year_no_lbl }}</strong> {{ year_total }} (Root: {{ year_no }})
             </p>
-            <table class="grid-table">
-                {% for row in vedic_grid %}
-                <tr>
-                    {% for num in row %}
-                    <td>{{ formatted_grid[num] }}</td>
-                    {% endfor %}
-                </tr>
-                {% endfor %}
-            </table>
+            <div class="grids-wrap">
+                <div class="grid-box">
+                    <p style="font-weight: bold; color: #b91c1c; margin-bottom: 4px;">{{ ui.vedic_grid_lbl }}</p>
+                    <table class="grid-table">
+                        {% for row in vedic_grid %}
+                        <tr>
+                            {% for num in row %}
+                            <td>{{ formatted_grid[num] }}</td>
+                            {% endfor %}
+                        </tr>
+                        {% endfor %}
+                    </table>
+                </div>
+                <div class="grid-box">
+                    <p style="font-weight: bold; color: #1e3a8a; margin-bottom: 4px;">{{ ui.loshu_grid_lbl }}</p>
+                    <table class="grid-table loshu-table">
+                        {% for row in loshu_grid %}
+                        <tr>
+                            {% for num in row %}
+                            <td>{{ formatted_loshu_grid[num] }}</td>
+                            {% endfor %}
+                        </tr>
+                        {% endfor %}
+                    </table>
+                </div>
+            </div>
         </div>
 
-        <!-- 2. Vedic Grid Yogas Analyzer -->
         <div class="card" style="background: #fffbeb; border-color: #fde68a;">
-            <h3 style="color: #b45309;">2. ವೇದಿಕ್ ಗ್ರಿಡ್ ವಿಶೇಷ ಯೋಗಗಳು (Vedic Grid Yogas)</h3>
+            <h3 style="color: #b45309;">{{ ui.yogas_title }}</h3>
+
+            <h4 style="color: #b45309; margin-top: 8px;">{{ ui.vedic_yogas_hdr }}</h4>
             {% if grid_yogas %}
                 {% for yoga in grid_yogas %}
                 <div style="background: #ffffff; border-left: 4px solid #d97706; padding: 12px; margin-bottom: 10px; border-radius: 4px;">
@@ -114,18 +338,31 @@
                 </div>
                 {% endfor %}
             {% else %}
-                <p>ಈ ಜನ್ಮ ದಿನಾಂಕದ ಗ್ರಿಡ್‌ನಲ್ಲಿ ಪ್ರಮುಖ ರಾಜಯೋಗಗಳು ನೇರವಾಗಿ ರೂಪುಗೊಂಡಿಲ್ಲ. ಆದರೆ ಮಿಸ್ ಆಗಿರುವ ಸಂಖ್ಯೆಗಳಿಗೆ ಪರಿಹಾರಗಳನ್ನು ಅನುಸರಿಸಬಹುದು.</p>
+                <p>{{ ui.no_yoga_msg }}</p>
+            {% endif %}
+
+            <hr style="border: 0; border-top: 1px dashed #f59e0b; margin: 16px 0;">
+
+            <h4 style="color: #1e40af; margin-top: 8px;">{{ ui.loshu_yogas_hdr }}</h4>
+            {% if loshu_yogas %}
+                {% for yoga in loshu_yogas %}
+                <div style="background: #ffffff; border-left: 4px solid #2563eb; padding: 12px; margin-bottom: 10px; border-radius: 4px;">
+                    <h4 style="margin: 0 0 5px 0; color: #1e40af;">{{ yoga.name }}</h4>
+                    <p style="margin: 0; color: #1e3a8a; font-size: 15px;">{{ yoga.desc }}</p>
+                </div>
+                {% endfor %}
+            {% else %}
+                <p>{{ ui.no_yoga_msg }}</p>
             {% endif %}
         </div>
 
-        <!-- 3. Name, DOB & Mobile Pyramid Charts -->
         <div class="card" style="background: #fdf4ff; border-color: #f5d0fe;">
-            <h3 style="color: #86198f;">3. ಪಿರಮಿಡ್ ನಂಬರ್ ವಿಶ್ಲೇಷಣೆ (Name, DOB & Mobile Pyramid Analysis)</h3>
+            <h3 style="color: #86198f;">{{ ui.pyramid_title }}</h3>
             
             {% if pyramid_data %}
-            <p style="margin-bottom: 5px;"><strong>ಅನ್ವಯಿಕ ಹೆಸರು (Name: {{ analysed_name }}):</strong></p>
+            <p style="margin-bottom: 5px;"><strong>{{ analysed_name }}:</strong></p>
             <div class="pyramid-container">
-                <p style="margin: 0 0 8px 0; font-weight: bold; color: #6b21a8;">ಹೆಸರಿನ ಪಿರಮಿಡ್ (Name Pyramid):</p>
+                <p style="margin: 0 0 8px 0; font-weight: bold; color: #6b21a8;">{{ ui.name_pyr_hdr }}</p>
                 {% for r in pyramid_data %}
                 <div class="pyramid-row">
                     {% for val in r %}
@@ -135,15 +372,15 @@
                 {% endfor %}
                 <hr style="border: 0; border-top: 1px solid #d8b4fe; margin: 12px 0;">
                 <p style="margin: 0; font-size: 17px; font-weight: bold; color: #581c87;">
-                    ✨ ಹೆಸರಿನ ಅಂತಿಮ ಪಿರಮಿಡ್ ಸಂಖ್ಯೆ (Final Name Pyramid Number): <span style="background: #7e22ce; color: #fff; padding: 3px 10px; border-radius: 4px;">{{ pyramid_data[-1][0] }}</span>
+                    {{ ui.final_name_pyr }} <span style="background: #7e22ce; color: #fff; padding: 3px 10px; border-radius: 4px;">{{ pyramid_data[-1][0] }}</span>
                 </p>
             </div>
             {% endif %}
 
             {% if dob_pyramid_data %}
-            <p style="margin: 20px 0 5px 0;"><strong>ಜನ್ಮ ದಿನಾಂಕ (DOB: {{ dob }}):</strong></p>
+            <p style="margin: 20px 0 5px 0;"><strong>{{ dob }}:</strong></p>
             <div class="pyramid-container" style="background: #f0fdf4; border-color: #bbf7d0;">
-                <p style="margin: 0 0 8px 0; font-weight: bold; color: #166534;">ಜನ್ಮ ದಿನಾಂಕದ ಪಿರಮಿಡ್ (DOB Pyramid):</p>
+                <p style="margin: 0 0 8px 0; font-weight: bold; color: #166534;">{{ ui.dob_pyr_hdr }}</p>
                 {% for r in dob_pyramid_data %}
                 <div class="pyramid-row" style="color: #15803d;">
                     {% for val in r %}
@@ -153,15 +390,15 @@
                 {% endfor %}
                 <hr style="border: 0; border-top: 1px solid #86efac; margin: 12px 0;">
                 <p style="margin: 0; font-size: 17px; font-weight: bold; color: #14532d;">
-                    ✨ ಜನ್ಮ ದಿನಾಂಕದ ಅಂತಿಮ ಪಿರಮಿಡ್ ಸಂಖ್ಯೆ (Final DOB Pyramid Number): <span style="background: #16a34a; color: #fff; padding: 3px 10px; border-radius: 4px;">{{ dob_pyramid_data[-1][0] }}</span>
+                    {{ ui.final_dob_pyr }} <span style="background: #16a34a; color: #fff; padding: 3px 10px; border-radius: 4px;">{{ dob_pyramid_data[-1][0] }}</span>
                 </p>
             </div>
             {% endif %}
 
             {% if mobile_pyramid_data %}
-            <p style="margin: 20px 0 5px 0;"><strong>ಮೊಬೈಲ್ ಸಂಖ್ಯೆ (Mobile Number: {{ input_mobile }}):</strong></p>
+            <p style="margin: 20px 0 5px 0;"><strong>{{ input_mobile }}:</strong></p>
             <div class="pyramid-container" style="background: #eff6ff; border-color: #bfdbfe;">
-                <p style="margin: 0 0 8px 0; font-weight: bold; color: #1e40af;">ಮೊಬೈಲ್ ಸಂಖ್ಯೆಯ ಪಿರಮಿಡ್ (Mobile Pyramid):</p>
+                <p style="margin: 0 0 8px 0; font-weight: bold; color: #1e40af;">{{ ui.mob_pyr_hdr }}</p>
                 {% for r in mobile_pyramid_data %}
                 <div class="pyramid-row" style="color: #1d4ed8;">
                     {% for val in r %}
@@ -171,135 +408,157 @@
                 {% endfor %}
                 <hr style="border: 0; border-top: 1px solid #93c5fd; margin: 12px 0;">
                 <p style="margin: 0; font-size: 17px; font-weight: bold; color: #1e3a8a;">
-                    ✨ ಮೊಬೈಲ್ ಸಂಖ್ಯೆಯ ಅಂತಿಮ ಪಿರಮಿಡ್ ಸಂಖ್ಯೆ (Final Mobile Pyramid Number): <span style="background: #2563eb; color: #fff; padding: 3px 10px; border-radius: 4px;">{{ mobile_pyramid_data[-1][0] }}</span>
+                    {{ ui.final_mob_pyr }} <span style="background: #2563eb; color: #fff; padding: 3px 10px; border-radius: 4px;">{{ mobile_pyramid_data[-1][0] }}</span>
                 </p>
             </div>
             {% endif %}
         </div>
 
-        <!-- 4. Partnership / Marriage Matching Analysis -->
-        {% if p2_dob and partner_compatibility %}
-        <div class="card" style="background: #fff7ed; border-color: #fed7aa;">
-            <h3 style="color: #c2410c;">4. ವೈವಾಹಿಕ ಅಥವಾ ವ್ಯಾಪಾರ ಪಾಲುದಾರಿಕೆ ಹೊಂದಾಣಿಕೆ (Partnership Matching)</h3>
-            <p>👥 <strong>ವ್ಯಕ್ತಿ 1:</strong> {{ analysed_name }} (ಮೂಲ ಸಂಖ್ಯೆ: {{ birth_no }}) <br>
-               👥 <strong>ಪಾಲುದಾರರು:</strong> {{ p2_name if p2_name else 'ಸಂಗಾತಿ' }} (ಮೂಲ ಸಂಖ್ಯೆ: {{ p2_birth_no }})</p>
-            <div style="background: #ffffff; border: 1px solid #fdba74; padding: 12px; border-radius: 6px; margin-top: 10px;">
-                <p style="margin: 0; font-size: 18px; font-weight: bold; color: #9a3412;">{{ partner_compatibility }}</p>
-            </div>
-        </div>
-        {% endif %}
-
-        <!-- 5. Personal Year & Month Predictions -->
         <div class="card" style="background: #e0f2fe; border-color: #7dd3fc;">
-            <h3 style="color: #0369a1;">5. ವಾರ್ಷಿಕ ಮತ್ತು ಮಾಸಿಕ ಭವಿಷ್ಯ (Personal Year & Month Predictions)</h3>
-            <p>🌟 <strong>ವಾರ್ಷಿಕ ಭವಿಷ್ಯ (Personal Year {{ current_year }} - ಸಂಖ್ಯಾ ಬಲ: {{ p_year_val }}):</strong><br>
+            <h3 style="color: #0369a1;">{{ ui.py_pm_title }}</h3>
+            <p>🌟 <strong>{{ ui.py_lbl }} {{ current_year }} - {{ ui.num_force_lbl }} {{ p_year_val }}):</strong><br>
             {{ p_year_desc }}</p>
             <hr style="border: 0; border-top: 1px solid #bae6fd; margin: 12px 0;">
-            <p>🌙 <strong>ಮಾಸಿಕ ಭವಿಷ್ಯ (Personal Month - ಸಂಖ್ಯಾ ಬಲ: {{ p_month_val }}):</strong><br>
+            <p>🌙 <strong>{{ ui.pm_lbl }} {{ ui.num_force_lbl }} {{ p_month_val }}):</strong><br>
             {{ p_month_desc }}</p>
         </div>
 
-        <!-- 6. Lucky Guide, Kua & Advanced Mobile Analysis -->
         <div class="card" style="background: #fdf2f8; border-color: #fbcfe8;">
-            <h3 style="color: #be185d;">6. ಅದೃಷ್ಟ ಬಣ್ಣ, ದಿಕ್ಕು, ರತ್ನ, ಕುವಾ ನಂಬರ್ ಮತ್ತು ವೃತ್ತಿ</h3>
-            <p>🎨 <strong>ಅದೃಷ್ಟ ಬಣ್ಣಗಳು (Lucky Colors):</strong> {{ astrology_props.colors }}</p>
-            <p>🧭 <strong>ಅದೃಷ್ಟ ದಿಕ್ಕು (Lucky Direction):</strong> {{ astrology_props.direction }}</p>
-            <p>💎 <strong>ಅದೃಷ್ಟ ರತ್ನ (Lucky Gemstone):</strong> {{ astrology_props.gemstone }}</p>
-            <p>📅 <strong>ಅದೃಷ್ಟ ವಾರಗಳು (Lucky Days):</strong> {{ astrology_props.lucky_days }}</p>
-            <p>☯️ <strong>ಕುವಾ ನಂಬರ್ (Kua Number):</strong> {{ kua_number }}</p>
-            <p>💼 <strong>ಅದೃಷ್ಟ ವೃತ್ತಿ / ಉದ್ಯೋಗ (Lucky Profession):</strong> {{ astrology_props.profession }}</p>
+            <h3 style="color: #be185d;">{{ ui.lucky_title }}</h3>
+            <p><strong>{{ ui.colors_lbl }}</strong> {{ astrology_props.colors }}</p>
+            <p><strong>{{ ui.dir_lbl }}</strong> {{ astrology_props.direction }}</p>
+            <p><strong>{{ ui.gem_lbl }}</strong> {{ astrology_props.gemstone }}</p>
+            <p><strong>{{ ui.days_lbl }}</strong> {{ astrology_props.lucky_days }}</p>
+            <p><strong>{{ ui.kua_lbl }}</strong> {{ kua_number }}</p>
+            <p><strong>{{ ui.prof_lbl }}</strong> {{ astrology_props.profession }}</p>
+
+            <hr style="border: 0; border-top: 1px dashed #f472b6; margin: 14px 0;">
+            <h4 style="color: #9d174d; margin-top: 0; margin-bottom: 10px;">Lucky &amp; Unlucky Time / Dates / Colours</h4>
+            <p><strong>Lucky Month:</strong> {{ lucky_month }}</p>
+            <p><strong>Unlucky Month:</strong> {{ unlucky_month }}</p>
+            <p><strong>Any Month Lucky Dates:</strong> {{ any_month_lucky_dates }}</p>
+            <p><strong>Lucky Week:</strong> {{ lucky_week }}</p>
+            <p><strong>Unlucky Week:</strong> {{ unlucky_week }}</p>
+            <p><strong>Bad Colours:</strong> <span class="enemy">{{ bad_colors }}</span></p>
+            <p><strong>Unlucky Number:</strong> <span class="enemy">{{ unlucky_number }}</span></p>
             
             {% if mobile_data %}
             <hr style="border: 0; border-top: 1px solid #f472b6; margin: 15px 0;">
-            <h4 style="color: #be185d; margin-top: 0;">📱 ಮೊಬೈಲ್ ಸಂಖ್ಯೆ ಆಳವಾದ ವಿಶ್ಲೇಷಣೆ (9 ಜೋಡಿಗಳು)</h4>
-            <p><strong>ಸಂಖ್ಯೆಯ ಮೊತ್ತ:</strong> {{ mobile_data.total_sum }} (ಮೂಲ ಸಂಖ್ಯೆ: {{ mobile_data.root_no }}) | <strong>ಕೊನೆಯ ಅಂಕಿ:</strong> {{ mobile_data.ending_no }}</p>
-            <p><strong>9 ಜೋಡಿಗಳ ವಿಶ್ಲೇಷಣೆ:</strong><br><br>
+            <h4 style="color: #be185d; margin-top: 0;">{{ ui.mob_adv_title }}</h4>
+            <p><strong>{{ ui.mob_sum_lbl }}</strong> {{ mobile_data.total_sum }} (Root: {{ mobile_data.root_no }}) | <strong>{{ ui.mob_end_lbl }}</strong> {{ mobile_data.ending_no }}</p>
+            <p><strong>{{ ui.mob_pairs_lbl }}</strong><br><br>
                 {% for item in mobile_data.pair_results %}
                     {% if item.type == 'good' %}
-                        <span class="pair-good">{{ item.pair }} (ಶುಭ)</span>
+                        <span class="pair-good">{{ item.pair }} ({{ ui.good_tag }})</span>
                     {% elif item.type == 'bad' %}
-                        <span class="pair-bad">{{ item.pair }} (ಅಶುಭ)</span>
+                        <span class="pair-bad">{{ item.pair }} ({{ ui.bad_tag }})</span>
                     {% else %}
                         <span class="pair-neutral">{{ item.pair }}</span>
                     {% endif %}
                 {% endfor %}
             </p>
-            <p><small style="color: #831843; font-weight: bold;">* ಹಸಿರು ಬಣ್ಣದಲ್ಲಿರುವ ಜೋಡಿಗಳು ಶುಭಕರ (Good Pairs), ಕೆಂಪು ಬಣ್ಣದಲ್ಲಿರುವವು ಅಶುಭ (Bad Pairs) ಎಂದು ಪರಿಗಣಿಸಲಾಗಿದೆ.</small></p>
+            <p><small style="color: #831843; font-weight: bold;">{{ ui.pair_note }}</small></p>
             {% endif %}
         </div>
 
-        <!-- 7. Missing Numbers & Remedies -->
         <div class="card" style="background: #fffbeb; border-color: #fde68a;">
-            <h3 style="color: #b45309;">7. ಮಿಸ್ ಆಗಿರುವ ಸಂಖ್ಯೆಗಳು ಮತ್ತು ಪರಿಹಾರಗಳು (Missing Numbers Remedies)</h3>
+            <h3 style="color: #b45309;">{{ ui.missing_title }}</h3>
             {% if missing_remedies_list %}
                 <ul>
                 {% for item in missing_remedies_list %}
-                    <li style="margin-bottom: 8px;"><strong>ಸಂಖ್ಯೆ {{ item.num }}:</strong> {{ item.remedy }}</li>
+                    <li style="margin-bottom: 8px;"><strong>{{ ui.num_prefix }} {{ item.num }}:</strong> {{ item.remedy }}</li>
                 {% endfor %}
                 </ul>
             {% else %}
-                <p>ಅದ್ಭುತ! ನಿಮ್ಮ ಜನ್ಮ ದಿನಾಂಕದಲ್ಲಿ ಎಲ್ಲಾ ಸಂಖ್ಯೆಗಳೂ ಲಭ್ಯವಿವೆ.</p>
+                <p>{{ ui.all_present_msg }}</p>
             {% endif %}
         </div>
 
-        <!-- 8. Name Analysis & Name Correction Advisor -->
         <div class="card">
-            <h3>8. ಹೆಸರಿನ ವಿಶ್ಲೇಷಣೆ ಮತ್ತು ತಿದ್ದುಪಡಿ ಸಲಹೆಗಾರ (Name Analysis & Correction Tool)</h3>
-            <p><strong>ಚಾಲ್ಡಿಯನ್ (Chaldean):</strong> ಒಟ್ಟು ಮೊತ್ತ: <strong>{{ chaldean_total }}</strong> (Root: <strong style="color:#b91c1c;">{{ chaldean_root }}</strong>)<br>
+            <h3>{{ ui.name_ana_title }}</h3>
+            <p><strong>{{ ui.chaldean_lbl }}</strong> {{ ui.total_lbl }} <strong>{{ chaldean_total }}</strong> (Root: <strong style="color:#b91c1c;">{{ chaldean_root }}</strong>)<br>
             <small style="color: #555;">{{ chaldean_breakdown }}</small></p>
             
             <div style="background: #f0fdf4; border: 1px solid #bbf7d0; padding: 12px; border-radius: 6px; margin-top: 10px;">
-                <p style="margin: 0; color: #166534; font-weight: bold;">✨ ಹೆಸರು ತಿದ್ದುಪಡಿ ಸಲಹೆ (Name Correction Advice):</p>
+                <p style="margin: 0; color: #166534; font-weight: bold;">{{ ui.advice_title }}</p>
                 <p style="margin: 5px 0 0 0; color: #14532d;">{{ name_advice }}</p>
             </div>
             
             <hr style="margin: 15px 0;">
-            <p><strong>ಪೈಥಾಗರಿಯನ್ (Pythagorean):</strong> ಒಟ್ಟು ಮೊತ್ತ: <strong>{{ pythagorean_total }}</strong> (Root: <strong style="color:#b91c1c;">{{ pythagorean_root }}</strong>)<br>
+            <p><strong>{{ ui.pythag_lbl }}</strong> {{ ui.total_lbl }} <strong>{{ pythagorean_total }}</strong> (Root: <strong style="color:#b91c1c;">{{ pythagorean_root }}</strong>)<br>
             <small style="color: #555;">{{ pythagorean_breakdown }}</small></p>
         </div>
 
-        <!-- 9. Name vs DOB Compatibility -->
         <div class="card">
-            <h3>9. ಹೆಸರು ಮತ್ತು ಜನ್ಮ ದಿನಾಂಕ ಹೊಂದಾಣಿಕೆ (Name vs DOB Compatibility)</h3>
+            <h3>{{ ui.compat_title }}</h3>
             
             <div class="compat-box" style="border-left: 5px solid #2563eb;">
-                <h4 style="margin-top:0; color:#1e40af;">ಚಾಲ್ಡಿಯನ್ ಹೆಸರಿನ ಸಂಖ್ಯೆ (Chaldean Root: {{ chaldean_root }})</h4>
-                <p>vs ಮೂಲ ಸಂಖ್ಯೆ (Birth No {{ birth_no }}): 
+                <h4 style="margin-top:0; color:#1e40af;">{{ ui.chal_card_title }} {{ chaldean_root }})</h4>
+                <p>vs {{ ui.birth_no_lbl }} {{ birth_no }}: 
                     <span class="{{ 'friend' if 'Friend' in compat.c_birth else ('enemy' if 'Enemy' in compat.c_birth else 'neutral') }}">{{ compat.c_birth }}</span>
                 </p>
-                <p>vs ಭಾಗ್ಯ ಸಂಖ್ಯೆ (Destiny No {{ destiny_no }}): 
+                <p>vs {{ ui.destiny_no_lbl }} {{ destiny_no }}: 
                     <span class="{{ 'friend' if 'Friend' in compat.c_destiny else ('enemy' if 'Enemy' in compat.c_destiny else 'neutral') }}">{{ compat.c_destiny }}</span>
                 </p>
-                <p>vs ವರ್ಷದ ಸಂಖ್ಯೆ (Year Root {{ year_no }}): 
+                <p>vs {{ ui.year_no_lbl }} {{ year_no }}: 
                     <span class="{{ 'friend' if 'Friend' in compat.c_year else ('enemy' if 'Enemy' in compat.c_year else 'neutral') }}">{{ compat.c_year }}</span>
                 </p>
             </div>
 
             <div class="compat-box" style="border-left: 5px solid #16a34a;">
-                <h4 style="margin-top:0; color:#15803d;">ಪೈಥಾಗರಿಯನ್ ಹೆಸರಿನ ಸಂಖ್ಯೆ (Pythagorean Root: {{ pythagorean_root }})</h4>
-                <p>vs ಮೂಲ ಸಂಖ್ಯೆ (Birth No {{ birth_no }}): 
+                <h4 style="margin-top:0; color:#15803d;">{{ ui.pyth_card_title }} {{ pythagorean_root }})</h4>
+                <p>vs {{ ui.birth_no_lbl }} {{ birth_no }}: 
                     <span class="{{ 'friend' if 'Friend' in compat.p_birth else ('enemy' if 'Enemy' in compat.p_birth else 'neutral') }}">{{ compat.p_birth }}</span>
                 </p>
-                <p>vs ಭಾಗ್ಯ ಸಂಖ್ಯೆ (Destiny No {{ destiny_no }}): 
+                <p>vs {{ ui.destiny_no_lbl }} {{ destiny_no }}: 
                     <span class="{{ 'friend' if 'Friend' in compat.p_destiny else ('enemy' if 'Enemy' in compat.p_destiny else 'neutral') }}">{{ compat.p_destiny }}</span>
                 </p>
-                <p>vs ವರ್ಷದ ಸಂಖ್ಯೆ (Year Root {{ year_no }}): 
+                <p>vs {{ ui.year_no_lbl }} {{ year_no }}: 
                     <span class="{{ 'friend' if 'Friend' in compat.p_year else ('enemy' if 'Enemy' in compat.p_year else 'neutral') }}">{{ compat.p_year }}</span>
                 </p>
             </div>
         </div>
 
-        <!-- 10. Common Lucky Numbers -->
         <div class="card" style="background: #f0fdf4; border-color: #86efac;">
-            <h3 style="color: #166534;">10. ಸಾಮಾನ್ಯ ಅದೃಷ್ಟ ಸಂಖ್ಯೆಗಳು (Lucky Numbers)</h3>
-            <p><strong>ಮೂಲ ಸಂಖ್ಯೆ ({{ birth_no }}) ಸ್ನೇಹ ಸಂಖ್ಯೆಗಳು:ಗಳು:</strong> {{ lucky_details.birth_friends }}</p>
-            <p><strong>ಭಾಗ್ಯ ಸಂಖ್ಯೆ ({{ destiny_no }}) ಸ್ನೇಹ ಸಂಖ್ಯೆಗಳು:</strong> {{ lucky_details.destiny_friends }}</p>
-            <h4 style="color: #15803d; font-size: 20px; text-align: center; margin-bottom: 0;">✨ ಅತ್ಯಂತ ಶುಭ ಸಂಖ್ಯೆಗಳು (Common Lucky Numbers): {{ lucky_details.common }}</h4>
+            <h3 style="color: #166534;">{{ ui.common_lucky_title }}</h3>
+            <p><strong>{{ ui.b_friends_lbl }} ({{ birth_no }}) {{ ui.friends_suffix }}</strong> {{ lucky_details.birth_friends }}</p>
+            <p><strong>{{ ui.d_friends_lbl }} ({{ destiny_no }}) {{ ui.friends_suffix }}</strong> {{ lucky_details.destiny_friends }}</p>
+            <h4 style="color: #15803d; font-size: 20px; text-align: center; margin-bottom: 0;">{{ ui.common_lbl }} {{ lucky_details.common }}</h4>
         </div>
 
-        <button class="print-btn" onclick="window.print()">📥 Download / Save Full Numerology Report as PDF</button>
+        <button class="print-btn" onclick="window.print()">{{ ui.print_btn }}</button>
 
         {% endif %}
     </div>
+
+    <script>
+        function togglePartnerSection() {
+            const section = document.getElementById("partner-section");
+            const btn = document.getElementById("toggle-partner-btn");
+            const isHidden = section.style.display === "none" || section.style.display === "";
+            if (isHidden) {
+                section.style.display = "block";
+                btn.textContent = "- {{ ui.p2_heading }}";
+            } else {
+                section.style.display = "none";
+                btn.textContent = "+ {{ ui.p2_heading }}";
+            }
+        }
+
+        document.addEventListener("DOMContentLoaded", function () {
+            const p2Name = document.getElementById("p2_name")?.value.trim() || "";
+            const p2Dob = document.getElementById("p2_dob")?.value.trim() || "";
+            const p2Lagna = document.querySelector('select[name="p2_lagna"]')?.value || "";
+            const p2Rashi = document.querySelector('select[name="p2_rashi"]')?.value || "";
+            const p2Nak = document.querySelector('select[name="p2_nak"]')?.value || "";
+            const section = document.getElementById("partner-section");
+            const btn = document.getElementById("toggle-partner-btn");
+
+            if (p2Name || p2Dob || p2Lagna || p2Rashi || p2Nak) {
+                section.style.display = "block";
+                if (btn) btn.textContent = "- {{ ui.p2_heading }}";
+            }
+        });
+    </script>
 </body>
 </html>
